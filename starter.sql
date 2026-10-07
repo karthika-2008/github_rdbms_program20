@@ -1,18 +1,15 @@
-## -- PL/SQL Trigger Assignment
-
--- Question:
--- Create a trigger that automatically displays a message
--- after inserting a new employee record into the Employee table.
-
 CREATE TABLE Employee (
-EmpID NUMBER(5) PRIMARY KEY,
-EmpName VARCHAR2(20),
-DeptID NUMBER(5)
+    EmpID NUMBER(5),
+    EmpName VARCHAR2(20),
+    DeptID NUMBER(5)
 );
 
--- Write your trigger program below.
+CREATE TRIGGER employee_insert_trigger
+AFTER INSERT ON Employee
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('New employee record inserted successfully.');
+END;
+/
 
--- Your solution should:
--- 1. Create a trigger.
--- 2. Execute AFTER INSERT.
--- 3. Display a message using DBMS_OUTPUT.PUT_LINE.
+INSERT INTO Employee VALUES (101, 'Arun', 10);
